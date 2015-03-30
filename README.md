@@ -134,7 +134,7 @@ Match the field value against a regular expression
 
 Set the default value for this field
 
-### `choices = function(choices [, message]){
+### `choices = function(choices [, message])`
 
 Restrict this field to an array of choices
 
