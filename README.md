@@ -118,6 +118,10 @@ the middleware processing will stop for this field and  `form.addError(key, mess
 
 Ensure the field is a boolean value
 
+### `field.trim()`
+
+Call string trim method on the value
+
 ### `field.required([message])`
 
 Flag an error if the field is not given

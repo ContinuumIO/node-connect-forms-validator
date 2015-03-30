@@ -3,6 +3,7 @@ var Form = require('../src/form');
 var expect = require('chai').expect
 
 describe('Field', function(){
+
     describe('#use #process', function(){
         it("should call the middleware when processing", function(done){
             var field = new Field("username")
@@ -21,9 +22,8 @@ describe('Field', function(){
                 done();
             });
 
-
-
         });
+
 
         it("should stop processing middleware on first error", function(done){
             var field = new Field("username")
@@ -44,11 +44,10 @@ describe('Field', function(){
                 done();
             });
 
-
-
         });
 
     });
+
 
     describe('#bool', function(){
 
@@ -86,6 +85,29 @@ describe('Field', function(){
 
         });
     });
+
+
+    describe('#trim', function(){
+
+        it("should trim strings", function(done){
+            var field = new Field("lol")
+
+            field.trim();
+
+            var req = {form: new Form({lol: " trim me "})};
+            var res = {locals: {}};
+
+            var middleware = field.process();
+
+            middleware(req, res, function(){
+                expect(req.form.data).to.deep.equal({lol: "trim me"});
+                done();
+            });
+
+        });
+
+    });
+
 
     describe('#required', function(){
 

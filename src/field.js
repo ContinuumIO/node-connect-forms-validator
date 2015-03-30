@@ -6,7 +6,7 @@ var Field = module.exports = function(key){
 
     this.stack = [function field(req, res, next){
         var form = this;
-        form.data[key] = form.rawData[key];
+        form.data[key] = form.rawData[key] || "";
         next();
     }];
 };
@@ -63,7 +63,7 @@ Field.prototype.bool = function(){
     /* convert result into a bool value */
     var key = this.key;
     this.stack.push(function(req, res, next){
-        this.data[key] = !!this.rawData[key];
+        this.data[key] = !!this.data[key];
         next();
     });
 
@@ -71,6 +71,16 @@ Field.prototype.bool = function(){
 };
 
 
+Field.prototype.trim = function(){
+    /* convert result into a bool value */
+    var key = this.key;
+    this.stack.push(function(req, res, next){
+        this.data[key] = this.data[key].trim();
+        next();
+    });
+
+    return this;
+};
 
 
 Field.prototype.required = function(message){
