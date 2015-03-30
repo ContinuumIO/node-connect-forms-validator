@@ -1,0 +1,15 @@
+{
+  "name": "connect-forms-validator",
+  "version": "1.0.0",
+  "description": "Connect form middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
+  }
+}
