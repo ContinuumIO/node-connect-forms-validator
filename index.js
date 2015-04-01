@@ -10,13 +10,6 @@ module.exports = function(){
 
     var default_values = {};
 
-    for (var i in fields){
-        var field = fields[i];
-        if (field.default_){
-            default_values[field.key] = field.default_;
-        }
-    }
-
     connectForm = function(req, res, last){
 
 
@@ -55,10 +48,27 @@ module.exports = function(){
     };
 
     connectForm.stack = [];
-
     extend(connectForm, formTemplate);
+
+    for (var i in fields){
+        var field = fields[i];
+        if (field.default_){
+            default_values[field.key] = field.default_;
+        }
+    }
+
+    for (var i in fields){
+        var field = fields[i];
+        connectForm.use(field.process());
+    }
+
 
     return connectForm;
 };
+
+
+module.exports.field = function(fieldName){return new Field(fieldName);};
+module.exports.Field = Field;
+module.exports.Form = Form;
 
 
