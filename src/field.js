@@ -144,7 +144,7 @@ Field.prototype.choices = function(choices, message){
     /* Restrict this field to an array of choices */
     var key = this.key;
 
-    this.stack.push(function choices(req, res, next){
+    this.stack.push(function(req, res, next){
         var form = this;
         if (choices.indexOf(form.data[key]) < 0){
             return next(key, message || key + " must be one of " + choices.join(', '));
